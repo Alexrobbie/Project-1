@@ -46,8 +46,32 @@ function callback(results, status) {
       console.log(ResName);
       var ResAdr=results[i].formatted_address;
       console.log(ResAdr);
-        $("#place"+i).append("<div class=info>"+ResName+"</div>")
+      var ResRate= results[i].rating;
+      var resPrice = results[i].price_level;
+      
+      if (resPrice == 1){
+        resPrice="$";
+      }
+      else if(resPrice==2) {
+          resPrice="$$";
+      }
+      else if(resPrice==3) {
+        resPrice="$$$";
+      }
+      else if(resPrice==4) {
+        resPrice="$$$$";
+      }
+      else if(resPrice==5) {
+        resPrice="$$$$$";
+      }
+      else {
+        resPrice= "No Price Data"
+      }
+
+        $("#place"+i).append("<div class=info><b>"+ResName+"</b></div>")
         $("#place"+i).append("<div class=info>"+ResAdr+"</div>")
+        $("#place"+i).append("<div class=info><u>"+'Rating: ' +ResRate+"</u></div>")
+        $("#place"+i).append("<div class=info>"+'Price Level: ' +resPrice+"</div>")
     }
   }
 }
